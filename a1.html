@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title></title>
+        <link rel="stylesheet" href="./index.css" />
+        <link rel="stylesheet" href="./card.css" />
+        <link rel="stylesheet" href="./modal.css" />
+        <style>
+            hr {
+                width: 100%;
+                margin-bottom: 8px;
+                opacity: 0.5;
+                border-color: #d84242;
+            }
+        </style>
+        <script src="./a1.js" defer type="module"></script>
+    </head>
+
+    <body>
+        <div class="header">
+            <div class="header1">
+                <!-- <img class="rounded-full w-40 h-40" src="123.jpg" alt="" /> -->
+                <h2>PET GPT</h2>
+            </div>
+            <div class="header2">
+                <h2>bnbbbb</h2>
+            </div>
+        </div>
+        <div class="middle">
+            <div class="imgbox">
+                <img class="img" src="123.jpg" alt="" srcset="" />
+            </div>
+            <div class="middle_right">
+                <h1>동물 백과사전</h1>
+                <form class="form_sel" action="post">
+                    <label>고양이 강아지 둘중 선택해주세요.</label>
+                    <select class="form-select">
+                        <option selected>
+                            클릭해서 어떤 동물인지 선택해주세요.
+                        </option>
+                        <option>고양이</option>
+                        <option>강아지</option>
+                    </select>
+                    <div class="question">
+                        <label>나이를 입력해주세요. </label>
+                        <input type="text" id="question1" />
+                    </div>
+                    <div class="question">
+                        <label>궁금한 점을 입력해주세요. </label>
+                        <input type="text" id="question2" />
+                    </div>
+                    <div class="question">
+                        <label>일단 보류</label>
+                        <!-- <input type="text" /> -->
+                    </div>
+                    <button type="submit" id="btn">전송</button>
+                </form>
+            </div>
+        </div>
+        <!-- 카드  -->
+        <div class="card">
+            <!-- <div class="card-main"> -->
+            <!-- <div class="card-header">
+                    <button class="card-header-is_closed" id="popupBtn">
+                        보기
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div class="card-body-footer">
+                        <hr />
+                        <button type="submit">눌러!</button>
+                    </div>
+                </div> -->
+            <!-- </div> -->
+        </div>
+        <!-- modal 띄우기. -->
+        <div id="modalWrap">
+            <div id="modalBody">
+                <span id="closeBtn">&times;</span>
+                <p>modal-popup 입니다.</p>
+            </div>
+        </div>
+        <script>
+            // const btn1 = document.getElementById("popupBtn");
+            // const modal = document.getElementById("modalWrap");
+            // const closeBtn1 = document.getElementById("closeBtn");
+
+            // btn1.onclick = function () {
+            //     modal.style.display = "block";
+            // };
+            // closeBtn1.onclick = function () {
+            //     modal.style.display = "none";
+            // };
+
+            // window.onclick = function (event) {
+            //     if (event.target == modal) {
+            //         modal.style.display = "none";
+            //     }
+            // };
+        </script>
+    </body>
+</html>
