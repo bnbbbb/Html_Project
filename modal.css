@@ -1,13 +1,13 @@
-#btnWrap {
+.btnWrap {
     width: 500px;
     margin: 100px auto;
 }
-#popupBtn {
+.popupBtn {
     /* width: 150px; */
     /* height: 50px; */
     /* padding: 10px 5px; */
 }
-#modalWrap {
+.modalWrap {
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     padding-top: 100px; /* Location of the box */
@@ -20,7 +20,7 @@
     display: none;
 }
 
-#modalBody {
+.modalBody {
     width: 500px;
     height: 300px;
     padding: 30px 30px;
@@ -29,7 +29,7 @@
     background-color: #fff;
 }
 
-#closeBtn {
+.closeBtn {
     float: right;
     font-weight: bold;
     color: #777;

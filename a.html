@@ -8,7 +8,6 @@
         <link rel="stylesheet" href="./index.css" />
         <link rel="stylesheet" href="./card.css" />
         <link rel="stylesheet" href="./modal.css" />
-        <script src="./a.js" defer type="module"></script>
         <style>
             hr {
                 width: 100%;
@@ -17,6 +16,7 @@
                 border-color: #d84242;
             }
         </style>
+        <script src="./a1.js" defer type="module"></script>
     </head>
 
     <body>
@@ -60,34 +60,58 @@
                 </form>
             </div>
         </div>
-
+        <!-- 카드  -->
         <div class="card">
-            <div class="card-header">
-                <button class="card-header-is_closed" id="popupBtn">
-                    보기
-                </button>
+            <div class="card-main">
+                <div class="card-header">
+                    <button type="submit" id="popupBtn"></button>
+                    <!-- <img class="card-img" src="./cat1.jpg" alt="" srcset="" /> -->
+                </div>
+                <div class="card-body">
+                    <div class="card-body-footer">
+                        <button type="submit">눌러!</button>
+                        <div id="modalWrap">
+                            <div id="modalBody">
+                                <span id="closeBtn">&times;</span>
+                                <p>modal-popup 입니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-                <div class="card-body-footer">
-                    <hr
-                        style="
-                            width: 100%;
-                            margin-bottom: 8px;
-                            opacity: 0.5;
-                            border-color: #d84242;
-                        "
-                    />
-                    <button type="submit">눌러!</button>
+            <div class="card-main">
+                <div class="card-header">
+                    <button type="submit" id="popupBtn"></button>
+                    <!-- <img class="card-img" src="./cat1.jpg" alt="" srcset="" /> -->
+                </div>
+                <div class="card-body">
+                    <div class="card-body-footer">
+                        <button type="submit">눌러!</button>
+                        <div id="modalWrap">
+                            <div id="modalBody">
+                                <span id="closeBtn">&times;</span>
+                                <p>modal-popup 입니다.123123</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div id="modalWrap">
-            <div id="modalBody">
-                <span id="closeBtn">&times;</span>
-                <p>modal-popup 입니다.</p>
-            </div>
-        </div>
+        <!-- modal 띄우기. -->
         <script>
+            const images = ["cat1.jpg", "cat2.jpg", "cat3.jpg"];
+
+            const chosenImage =
+                images[Math.floor(Math.random() * images.length)];
+
+            const bgImages = document.createElement("img");
+            const cardImage = document.querySelector(".card-header");
+            bgImages.src = `./${chosenImage}`;
+            bgImages.classList.add("card-img");
+            cardImage.append(bgImages);
+            // document.body.appendChild(bgImage);
+
+            // modal;
             const btn1 = document.getElementById("popupBtn");
             const modal = document.getElementById("modalWrap");
             const closeBtn1 = document.getElementById("closeBtn");

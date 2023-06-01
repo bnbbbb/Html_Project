@@ -1,10 +1,8 @@
 let $petSpecies = document.querySelector("select");
-// let $button = document.querySelector("button");
 let $button = document.getElementById("btn");
 let $input1 = document.querySelector("#question1");
 let $input2 = document.querySelector("#question2");
 let userInputData;
-// let createCard;
 let data = [
     {
         role: "system",
@@ -19,7 +17,6 @@ let url = `https://estsoft-openai-api.jejucodingcamp.workers.dev/`;
 
 $button.addEventListener("click", (e) => {
     e.preventDefault();
-    // 이상한 키워드가 나오게 되면 검색 거절 하는
     let nonKeyword = [
         "여행",
         "일정",
@@ -30,10 +27,9 @@ $button.addEventListener("click", (e) => {
         "파도",
     ];
 
-    // 고양이 강아지 선택 안하면 alert으로 선택하게 만듦.
     if ($petSpecies.value !== "고양이" && $petSpecies.value !== "강아지") {
         alert("고양이 강아지 선택해주세요. ");
-    } else if ($input1.value == isNaN) {
+    } else if (isNaN($input1.value)) {
         alert("나이는 숫자를 입력해주세요.");
     } else if ($input1.value === "") {
         alert("나이를 입력해주세요. ");
@@ -48,14 +44,9 @@ $button.addEventListener("click", (e) => {
             "이고 " +
             $input2.value;
         let noAnswer = nonKeyword.some((word) => userInputData.includes(word));
-        // console.log($input1.value);
-        // console.log($input2.value);
-        console.log(userInputData);
-        // option 초기화
+
         $petSpecies.selectedIndex = 0;
-        // 첫 번째 검색창 초기화
         $input1.value = "";
-        // 두 번째 검색창 초기화
         $input2.value = "";
 
         if (noAnswer) {
@@ -69,26 +60,6 @@ $button.addEventListener("click", (e) => {
         }
     }
 });
-function makeImg() {
-    // // if ($petSpecies.value === "고양이") {
-    // if (userInputData.includes("고양이")) {
-    //     const images = ["cat1.jpg", "cat2.jpg", "cat3.jpg"];
-    //     const chosenImage = images[Math.floor(Math.random() * images.length)];
-    //     const bgImages = document.createElement("img");
-    //     const cardImage = document.querySelector(".card-header");
-    //     bgImages.src = `./${chosenImage}`;
-    //     bgImages.classList.add("card-img");
-    //     cardImage.append(bgImages);
-    // } else if (userInputData.includes("강아지")) {
-    //     const images = ["dog1.jpg", "dog2.jpg", "dog3.jpg"];
-    //     const chosenImage = images[Math.floor(Math.random() * images.length)];
-    //     const bgImages = document.createElement("img");
-    //     const cardImage = document.querySelector(".card-header");
-    //     bgImages.src = `./${chosenImage}`;
-    //     bgImages.classList.add("card-img");
-    //     cardImage.append(bgImages);
-    // }
-}
 
 function makeCard() {
     const createCard = document.querySelector(".card");
@@ -101,18 +72,17 @@ function makeCard() {
     cardHeader.classList.add("card-header");
     cardBody.classList.add("card-body");
     cardFooter.classList.add("card-body-footer");
-    cardBtn.id = "popupBtn";
+    cardBtn.classList.add("popupBtn");
     cardHeader.append(cardBtn);
     cardBody.append(cardFooter);
     cardBtn.innerText = "답변";
     cardFooter.innerText = userInputData;
-    // makeImg();
+
     basic.append(cardHeader, cardBody);
     if (userInputData.includes("고양이")) {
         const images = ["cat1.jpg", "cat2.jpg", "cat3.jpg"];
         const chosenImage = images[Math.floor(Math.random() * images.length)];
         const bgImages = document.createElement("img");
-        // const cardImage = document.querySelector(".card-header");
         bgImages.src = `./${chosenImage}`;
         bgImages.classList.add("card-img");
         cardHeader.append(bgImages);
@@ -121,7 +91,6 @@ function makeCard() {
         const images = ["dog1.jpg", "dog2.jpg", "dog3.jpg"];
         const chosenImage = images[Math.floor(Math.random() * images.length)];
         const bgImages = document.createElement("img");
-        // const cardImage = document.querySelector(".card-header");
         bgImages.src = `./${chosenImage}`;
         bgImages.classList.add("card-img");
         cardHeader.append(bgImages);
@@ -129,24 +98,53 @@ function makeCard() {
 
     createCard.append(basic);
 }
-function modal() {
-    const btn1 = document.getElementById("popupBtn");
-    const modal = document.getElementById("modalWrap");
-    const closeBtn1 = document.getElementById("closeBtn");
 
-    btn1.onclick = function () {
-        modal.style.display = "block";
-    };
-    closeBtn1.onclick = function () {
-        modal.style.display = "none";
-    };
+function modal(res) {
+    const body = document.querySelector("body");
+    const modalWrap = document.createElement("div");
+    modalWrap.classList.add("modalWrap");
+    const modalBody = document.createElement("div");
+    modalBody.classList.add("modalBody");
+    modalBody.innerHTML = `<span class="closeBtn"> &times;</span>`;
+    const gptAnswer = document.createElement("h4");
+    gptAnswer.classList.add("gptAnswer");
+    modalWrap.appendChild(modalBody);
+    modalBody.appendChild(gptAnswer);
+    body.appendChild(modalWrap);
 
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
+    const index = res.choices.length;
+    const btns = document.querySelectorAll(".popupBtn");
+
+    btns.forEach((btn, index) => {
+        btn.addEventListener("click", () => openModal(index));
+    });
+
+    function openModal(index) {
+        const modalBody = modalWrap.querySelector(".modalBody");
+
+        const h4 = modalBody.querySelector("h4");
+        const value = getValueForModal(index);
+        h4.innerText = value;
+
+        modalWrap.style.display = "block";
+
+        const closeBtn = modalBody.querySelector(".closeBtn");
+        closeBtn.addEventListener("click", () => closeModal(modalWrap));
+    }
+
+    function closeModal(modalWrap) {
+        modalWrap.style.display = "none";
+    }
+
+    function getValueForModal(index) {
+        if (index < res.choices.length) {
+            return res.choices[index].message.content;
+        } else {
+            return "";
         }
-    };
+    }
 }
+
 function chatGptApi() {
     fetch(url, {
         method: "POST",
@@ -158,33 +156,7 @@ function chatGptApi() {
     })
         .then((res) => res.json())
         .then((res) => {
-            // const createCard = document.querySelector(".card");
-            // const basic = document.createElement("div");
-            // const cardHeader = document.createElement("div");
-            // const cardBody = document.createElement("div");
-            // const cardBtn = document.createElement("button");
-            // const cardFooter = document.createElement("div");
-            // // createCard.append(document.createElement(".card-header"));
-            // basic.classList.add("card-main");
-            // cardHeader.classList.add("card-header");
-            // cardBody.classList.add("card-body");
-            // cardBtn.classList.add("card-header-is_closed");
-            // cardFooter.classList.add("card-body-footer");
-            // cardBtn.id = "popupBtn";
-            // cardHeader.append(cardBtn);
-            // cardBody.append(cardFooter);
-            // cardFooter.innerText = userInputData;
-            // basic.append(cardHeader, cardBody);
-            // createCard.append(basic);
             makeCard();
-            makeImg();
-            modal();
-            // console.log($petSpecies.value);
-            console.log(userInputData);
-            // 없어도되는 코드
-            // console.log(cardFooter);
-            // document;
-            document.querySelector(".gptAnswer").innerText =
-                res.choices[0].message.content;
+            modal(res);
         });
 }

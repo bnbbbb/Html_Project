@@ -101,7 +101,7 @@ function makeCard() {
     cardHeader.classList.add("card-header");
     cardBody.classList.add("card-body");
     cardFooter.classList.add("card-body-footer");
-    cardBtn.id = "popupBtn";
+    cardBtn.classList.add("popupBtn");
     cardHeader.append(cardBtn);
     cardBody.append(cardFooter);
     cardBtn.innerText = "답변";
@@ -129,23 +129,60 @@ function makeCard() {
 
     createCard.append(basic);
 }
-function modal() {
-    const btn1 = document.getElementById("popupBtn");
-    const modal = document.getElementById("modalWrap");
-    const closeBtn1 = document.getElementById("closeBtn");
+function modal(res) {
+    const body = document.querySelector("body");
+    const modalWrap = document.createElement("div");
+    modalWrap.classList.add("modalWrap");
+    const modalBody = document.createElement("div");
+    modalBody.classList.add("modalBody");
+    modalBody.innerHTML = `<span class="closeBtn"> &times;</span>`;
+    const gptAnswer = document.createElement("h4");
 
-    btn1.onclick = function () {
-        modal.style.display = "block";
-    };
-    closeBtn1.onclick = function () {
-        modal.style.display = "none";
-    };
+    gptAnswer.classList.add("gptAnswer");
+    modalWrap.appendChild(modalBody);
+    modalBody.appendChild(gptAnswer);
+    body.appendChild(modalWrap);
+    const btns = document.getElementsByClassName("popupBtn");
+    const modals = document.getElementsByClassName("modalWrap");
+    const closeBtn = document.getElementsByClassName("closeBtn");
+    console.log(btns.length);
+    let funcs = [];
+    function Modal(num) {
+        return function () {
+            // 해당 클래스의 내용을 클릭하면 Modal을 띄웁니다.
+            btns[num].onclick = function () {
+                modals[num].style.display = "block";
+                console.log(num);
+            };
 
+            // <span> 태그(X 버튼)를 클릭하면 Modal이 닫습니다.
+            closeBtn[num].onclick = function () {
+                modals[num].style.display = "none";
+            };
+        };
+    }
+
+    // 원하는 Modal 수만큼 Modal 함수를 호출해서 funcs 함수에 정의합니다.
+    for (var i = 0; i < btns.length; i++) {
+        funcs[i] = Modal(i);
+    }
+
+    // 원하는 Modal 수만큼 funcs 함수를 호출합니다.
+    for (var j = 0; j < btns.length; j++) {
+        funcs[j]();
+    }
+
+    // Modal 영역 밖을 클릭하면 Modal을 닫습니다.
     window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
+        if (event.target.getElementById == "modal") {
+            event.target.style.display = "none";
         }
     };
+
+    for (let i in res.choices.length) {
+        document.querySelector(".gptAnswer").innerText =
+            res.choices[i].message.content;
+    }
 }
 function chatGptApi() {
     fetch(url, {
@@ -158,33 +195,29 @@ function chatGptApi() {
     })
         .then((res) => res.json())
         .then((res) => {
-            // const createCard = document.querySelector(".card");
-            // const basic = document.createElement("div");
-            // const cardHeader = document.createElement("div");
-            // const cardBody = document.createElement("div");
-            // const cardBtn = document.createElement("button");
-            // const cardFooter = document.createElement("div");
-            // // createCard.append(document.createElement(".card-header"));
-            // basic.classList.add("card-main");
-            // cardHeader.classList.add("card-header");
-            // cardBody.classList.add("card-body");
-            // cardBtn.classList.add("card-header-is_closed");
-            // cardFooter.classList.add("card-body-footer");
-            // cardBtn.id = "popupBtn";
-            // cardHeader.append(cardBtn);
-            // cardBody.append(cardFooter);
-            // cardFooter.innerText = userInputData;
-            // basic.append(cardHeader, cardBody);
-            // createCard.append(basic);
-            makeCard();
-            makeImg();
-            modal();
-            // console.log($petSpecies.value);
             console.log(userInputData);
-            // 없어도되는 코드
-            // console.log(cardFooter);
-            // document;
-            document.querySelector(".gptAnswer").innerText =
-                res.choices[0].message.content;
+            // 카드 만드는 함수 실행
+            makeCard();
+            // 모달 만드는 함수 실행
+            modal(res);
+            // console.log(btns.length + "asdjkhasd");
+            // console.log(btns.length);
+            // const answer = document.querySelector(".gptAnswer");
+            // let ansfunc = [];
+            // function getAnswer(n) {
+            //     answer.innerText = res.choices[n].message.content;
+            // }
+            // for (let i = 0; i < answer.length; i++) {
+            //     ansfunc[i] = getAnswer[i];
+            // }
+            // for (let i in res.choices.length) {
+            //     document.querySelector(".gptAnswer").innerText =
+            //         res.choices[i].message.content;
+            // }
+            console.log(
+                (document.querySelector(".gptAnswer").innerText =
+                    res.choices[0].message.content)
+            );
+            console.log(res.choices.length);
         });
 }
