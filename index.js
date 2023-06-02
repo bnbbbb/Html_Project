@@ -172,4 +172,5 @@ function chatGptApi() {
             console.log(userInputData);
             // console.log(res.choices[0].message.content);
         });
+    alert("아래 카드가 만들어 질때까지 기다려주세요.");
 }
