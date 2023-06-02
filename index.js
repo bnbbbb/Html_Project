@@ -1,11 +1,8 @@
 let $petSpecies = document.querySelector("select");
-// let $button = document.querySelector("button");
 let $button = document.getElementById("btn");
 let $input1 = document.querySelector("#question1");
 let $input2 = document.querySelector("#question2");
 let userInputData;
-let resCount;
-// let createCard;
 let data = [
     {
         role: "system",
@@ -20,7 +17,6 @@ let url = `https://estsoft-openai-api.jejucodingcamp.workers.dev/`;
 
 $button.addEventListener("click", (e) => {
     e.preventDefault();
-    // 이상한 키워드가 나오게 되면 검색 거절 하는
     let nonKeyword = [
         "여행",
         "일정",
@@ -31,10 +27,9 @@ $button.addEventListener("click", (e) => {
         "파도",
     ];
 
-    // 고양이 강아지 선택 안하면 alert으로 선택하게 만듦.
     if ($petSpecies.value !== "고양이" && $petSpecies.value !== "강아지") {
         alert("고양이 강아지 선택해주세요. ");
-    } else if ($input1.value == isNaN) {
+    } else if (isNaN($input1.value)) {
         alert("나이는 숫자를 입력해주세요.");
     } else if ($input1.value === "") {
         alert("나이를 입력해주세요. ");
@@ -49,14 +44,9 @@ $button.addEventListener("click", (e) => {
             "이고 " +
             $input2.value;
         let noAnswer = nonKeyword.some((word) => userInputData.includes(word));
-        // console.log($input1.value);
-        // console.log($input2.value);
-        console.log(userInputData);
-        // option 초기화
+
         $petSpecies.selectedIndex = 0;
-        // 첫 번째 검색창 초기화
         $input1.value = "";
-        // 두 번째 검색창 초기화
         $input2.value = "";
 
         if (noAnswer) {
@@ -70,27 +60,9 @@ $button.addEventListener("click", (e) => {
         }
     }
 });
-function makeImg() {
-    // // if ($petSpecies.value === "고양이") {
-    // if (userInputData.includes("고양이")) {
-    //     const images = ["cat1.jpg", "cat2.jpg", "cat3.jpg"];
-    //     const chosenImage = images[Math.floor(Math.random() * images.length)];
-    //     const bgImages = document.createElement("img");
-    //     const cardImage = document.querySelector(".card-header");
-    //     bgImages.src = `./${chosenImage}`;
-    //     bgImages.classList.add("card-img");
-    //     cardImage.append(bgImages);
-    // } else if (userInputData.includes("강아지")) {
-    //     const images = ["dog1.jpg", "dog2.jpg", "dog3.jpg"];
-    //     const chosenImage = images[Math.floor(Math.random() * images.length)];
-    //     const bgImages = document.createElement("img");
-    //     const cardImage = document.querySelector(".card-header");
-    //     bgImages.src = `./${chosenImage}`;
-    //     bgImages.classList.add("card-img");
-    //     cardImage.append(bgImages);
-    // }
-}
 
+// 검색하고나서 질문에 대한 카드 만드는 함수.
+// 리펙토링이 필요함.
 function makeCard() {
     const createCard = document.querySelector(".card");
     const basic = document.createElement("div");
@@ -107,14 +79,13 @@ function makeCard() {
     cardBody.append(cardFooter);
     cardBtn.innerText = "답변";
     cardFooter.innerText = userInputData;
-    // makeImg();
+
     basic.append(cardHeader, cardBody);
     if (userInputData.includes("고양이")) {
         const images = ["cat1.jpg", "cat2.jpg", "cat3.jpg"];
         const chosenImage = images[Math.floor(Math.random() * images.length)];
         const bgImages = document.createElement("img");
-        // const cardImage = document.querySelector(".card-header");
-        bgImages.src = `./${chosenImage}`;
+        bgImages.src = `./img/${chosenImage}`;
         bgImages.classList.add("card-img");
         cardHeader.append(bgImages);
     }
@@ -122,8 +93,7 @@ function makeCard() {
         const images = ["dog1.jpg", "dog2.jpg", "dog3.jpg"];
         const chosenImage = images[Math.floor(Math.random() * images.length)];
         const bgImages = document.createElement("img");
-        // const cardImage = document.querySelector(".card-header");
-        bgImages.src = `./${chosenImage}`;
+        bgImages.src = `./img/${chosenImage}`;
         bgImages.classList.add("card-img");
         cardHeader.append(bgImages);
     }
@@ -131,6 +101,8 @@ function makeCard() {
     createCard.append(basic);
 }
 
+// 답변을 클릭시 모달을 만들어주는 함수
+// 리펙토링이 필요함.
 function modal(res) {
     const body = document.querySelector("body");
     const modalWrap = document.createElement("div");
@@ -139,89 +111,48 @@ function modal(res) {
     modalBody.classList.add("modalBody");
     modalBody.innerHTML = `<span class="closeBtn"> &times;</span>`;
     const gptAnswer = document.createElement("h4");
-
     gptAnswer.classList.add("gptAnswer");
     modalWrap.appendChild(modalBody);
     modalBody.appendChild(gptAnswer);
     body.appendChild(modalWrap);
+
     const btns = document.querySelectorAll(".popupBtn");
-    // const modals = document.querySelectorAll(".modalWrap");
-    // const closeBtn = document.getElementsByClassName("closeBtn");
-    console.log(btns.length);
-    const index = res.choices.length;
-    console.log("asdasd" + index);
-    btns.forEach((btns, index) => {
-        btns.addEventListener("click", () => openModal(index));
+
+    btns.forEach((btn, index) => {
+        btn.addEventListener("click", () => openModal(index));
     });
 
+    // 모달을 열어주는 함수.
     function openModal(index) {
-        // 해당 버튼과 연결된 모달 요소 선택
-        modalWrap[index];
-        modalWrap.querySelector(".modalBody");
+        const modalWrap = document.querySelectorAll(".modalWrap")[index];
+        const modalBody = modalWrap.querySelector(".modalBody");
 
-        // 모달 내용 업데이트
+        console.log("answerList = " + answerList);
         const h4 = modalBody.querySelector("h4");
-        const value = getValueForModal(index); // 모달에 표시할 값을 가져오는 함수 (index에 따라 다른 값 반환)
+        const value = getValueForModal(index);
         h4.innerText = value;
 
-        // 모달 열기
         modalWrap.style.display = "block";
 
-        // 모달 닫기 이벤트 리스너 설정
         const closeBtn = modalBody.querySelector(".closeBtn");
         closeBtn.addEventListener("click", () => closeModal(modalWrap));
     }
 
+    // 모달을 닫아주는 함수.
     function closeModal(modalWrap) {
         modalWrap.style.display = "none";
     }
+    // chatgpt의 대답을 리스트로 만들어서 각 modul
     function getValueForModal(index) {
-        console.log("resCount " + resCount);
-        if (index < res.choices.length) {
-            return res.choices[index].message.content;
-        } else {
-            return "";
-        }
+        let content = res.choices[0].message.content.toString();
+
+        answerList.push(content);
+        res.choices[0].message.content = "";
+        return answerList[index];
     }
-
-    let funcs = [];
-    // function Modal(num) {
-    //     return function () {
-    //         // 해당 클래스의 내용을 클릭하면 Modal을 띄웁니다.
-    //         btns[num].onclick = function () {
-    //             modals[num].style.display = "block";
-    //             console.log(num);
-    //         };
-
-    //         // <span> 태그(X 버튼)를 클릭하면 Modal이 닫습니다.
-    //         closeBtn[num].onclick = function () {
-    //             modals[num].style.display = "none";
-    //         };
-    //     };
-    // }
-
-    // // 원하는 Modal 수만큼 Modal 함수를 호출해서 funcs 함수에 정의합니다.
-    // for (var i = 0; i < btns.length; i++) {
-    //     funcs[i] = Modal(i);
-    // }
-
-    // // 원하는 Modal 수만큼 funcs 함수를 호출합니다.
-    // for (var j = 0; j < btns.length; j++) {
-    //     funcs[j]();
-    // }
-
-    // // Modal 영역 밖을 클릭하면 Modal을 닫습니다.
-    // window.onclick = function (event) {
-    //     if (event.target.getElementById == "modal") {
-    //         event.target.style.display = "none";
-    //     }
-    // };
-
-    // for (let i in res.choices.length) {
-    //     gptAnswer[res.choices.length].innerText =
-    //         res.choices[res.choices.length].message.content;
-    // }
 }
+
+let answerList = [];
 
 function chatGptApi() {
     fetch(url, {
@@ -234,19 +165,11 @@ function chatGptApi() {
     })
         .then((res) => res.json())
         .then((res) => {
-            console.log(userInputData);
-            // 카드 만드는 함수 실행
             makeCard();
-            // 모달 만드는 함수 실행
-            // let resCount;
-
             modal(res);
+            console.log(res.choices[0].message);
 
-            console.log(modal.btns);
-            // console.log(
-            //     (document.querySelector(".gptAnswer").innerText =
-            //         res.choices[0].message.content)
-            // );
-            console.log(res.choices.length);
+            console.log(userInputData);
+            // console.log(res.choices[0].message.content);
         });
 }

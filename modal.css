@@ -22,7 +22,9 @@
 
 .modalBody {
     width: 500px;
-    height: 300px;
+    min-height: 300px;
+    /* height: %; */
+    max-height: 800px;
     padding: 30px 30px;
     margin: 0 auto;
     border: 1px solid #777;
