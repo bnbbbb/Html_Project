@@ -1,3 +1,5 @@
+// refactoring 필요.
+
 let $petSpecies = document.querySelector("select");
 let $button = document.getElementById("btn");
 let $input1 = document.querySelector("#question1");
@@ -15,6 +17,7 @@ let data = [
 ];
 let url = `https://estsoft-openai-api.jejucodingcamp.workers.dev/`;
 
+// 검색 했을 때 이벤트리스너로 호출.
 $button.addEventListener("click", (e) => {
     e.preventDefault();
     let nonKeyword = [
@@ -27,6 +30,7 @@ $button.addEventListener("click", (e) => {
         "파도",
     ];
 
+    // 검색창에 고양이 강아지 이외의 동물들은 검색 못하게 만
     if ($petSpecies.value !== "고양이" && $petSpecies.value !== "강아지") {
         alert("고양이 강아지 선택해주세요. ");
     } else if (isNaN($input1.value)) {
@@ -62,7 +66,7 @@ $button.addEventListener("click", (e) => {
 });
 
 // 검색하고나서 질문에 대한 카드 만드는 함수.
-// 리펙토링이 필요함.
+
 function makeCard() {
     const createCard = document.querySelector(".card");
     const basic = document.createElement("div");
@@ -101,8 +105,14 @@ function makeCard() {
     createCard.append(basic);
 }
 
-// 답변을 클릭시 모달을 만들어주는 함수
-// 리펙토링이 필요함.
+/*
+    modal 생성, 닫기, 열기, 챗 gpt 답변 배열로 받아오는 역할. 
+    각 버튼에 대한 클릭 이벤트 리스너를 추가합니다.
+    @param {object} res chatGpt의 답변을 받음.
+    @param {object} btn - 버튼 객체
+    @param {number} index - 버튼의 인덱스
+    @param {object} modalWrap - 모달을 감싸는 요소
+ */
 function modal(res) {
     const body = document.querySelector("body");
     const modalWrap = document.createElement("div");
@@ -122,7 +132,6 @@ function modal(res) {
         btn.addEventListener("click", () => openModal(index));
     });
 
-    // 모달을 열어주는 함수.
     function openModal(index) {
         const modalWrap = document.querySelectorAll(".modalWrap")[index];
         const modalBody = modalWrap.querySelector(".modalBody");
@@ -138,11 +147,10 @@ function modal(res) {
         closeBtn.addEventListener("click", () => closeModal(modalWrap));
     }
 
-    // 모달을 닫아주는 함수.
     function closeModal(modalWrap) {
         modalWrap.style.display = "none";
     }
-    // chatgpt의 대답을 리스트로 만들어서 각 modul
+
     function getValueForModal(index) {
         let content = res.choices[0].message.content.toString();
 
