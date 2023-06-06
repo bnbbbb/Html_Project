@@ -1,9 +1,9 @@
 // refactoring 필요.
 
-const $petSpecies = document.querySelector("select");
-const $button = document.getElementById("btn");
-const $input1 = document.querySelector("#question1");
-const $input2 = document.querySelector("#question2");
+let $petSpecies = document.querySelector("select");
+let $button = document.getElementById("btn");
+let $input1 = document.querySelector("#question1");
+let $input2 = document.querySelector("#question2");
 let userInputData;
 let data = [
     {
@@ -109,7 +109,11 @@ function makeCard() {
     modal 생성, 닫기, 열기, 챗 gpt 답변 배열로 받아오는 역할. 
     각 버튼에 대한 클릭 이벤트 리스너를 추가합니다.
     @param {object} res chatGpt의 답변을 받음.
+    @param {object} btn - 버튼 객체
+    @param {number} index - 버튼의 인덱스
+    @param {object} modalWrap - 모달을 감싸는 요소
  */
+let answerList = [];
 function modal(res) {
     const body = document.querySelector("body");
     const modalWrap = document.createElement("div");
@@ -156,8 +160,6 @@ function modal(res) {
         return answerList[index];
     }
 }
-
-let answerList = [];
 
 function chatGptApi() {
     fetch(url, {
