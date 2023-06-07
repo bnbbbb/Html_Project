@@ -1,4 +1,6 @@
 let answerList = [];
+
+/* @param {object} res chatGpt의 답변을 받음. */
 export function modal(res) {
     const body = document.querySelector("body");
     const modalWrap = document.createElement("div");
@@ -18,6 +20,7 @@ export function modal(res) {
         btn.addEventListener("click", () => openModal(index));
     });
 
+    /* btn의 개수별로 각 index 생성하여 카드 index와 button index 맞춤. */
     function openModal(index) {
         const modalWrap = document.querySelectorAll(".modalWrap")[index];
         const modalBody = modalWrap.querySelector(".modalBody");
@@ -33,10 +36,11 @@ export function modal(res) {
         closeBtn.addEventListener("click", () => closeModal(modalWrap));
     }
 
+    /* modal 닫는 함수. */
     function closeModal(modalWrap) {
         modalWrap.style.display = "none";
     }
-
+    /* getValueForModal 함수로 chatgpt 답변을 answerList로 저장. */
     function getValueForModal(index) {
         let content = res.choices[0].message.content.toString();
 

@@ -1,7 +1,3 @@
-/*
-    main.js로 
-*/
-
 import { chatGptApi } from "./chatapi.js";
 import { modal } from "./modal.js";
 import { makeCard } from "./card.js";

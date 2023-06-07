@@ -1,5 +1,5 @@
 /*
-고양이 사진 랜덤 api 호출
+고양이 사진 랜덤 api 생성.
 */
 export function catImgMake() {
     return fetch("https://cataas.com/api/cats?tags=cute")
@@ -11,7 +11,7 @@ export function catImgMake() {
         });
 }
 /*
-강아지 사진 랜덤 api 호출
+강아지 사진 랜덤 api 생성.
 */
 export function dogImgMake() {
     return fetch("https://api.thedogapi.com/v1/images/search")

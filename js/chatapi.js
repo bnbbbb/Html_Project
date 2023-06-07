@@ -1,9 +1,10 @@
-let url = `https://estsoft-openai-api.jejucodingcamp.workers.dev/`;
 import { data } from "./data.js";
 import { userInputData } from "./main.js";
 import { makeCard } from "./card.js";
 import { modal } from "./modal.js";
 
+/* chatgpt 비동기 통신.  */
+let url = `https://estsoft-openai-api.jejucodingcamp.workers.dev/`;
 export function chatGptApi() {
     fetch(url, {
         method: "POST",
