@@ -1,6 +1,7 @@
 import { chatGptApi } from "./chatapi.js";
+// import { saveCard } from "./localcard.js";
 import { modal } from "./modal.js";
-import { makeCard } from "./card.js";
+import { saveCard } from "./local.js";
 import { data } from "./data.js";
 // 메인 코드 작성
 const $petSpecies = document.querySelector("select");

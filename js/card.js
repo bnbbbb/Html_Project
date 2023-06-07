@@ -1,7 +1,8 @@
-import { userInputData } from "./main.js";
+// import { userInputData } from "./main.js";
 import { catImgMake } from "./petimgapi.js";
 import { dogImgMake } from "./petimgapi.js";
-
+import { saveCard } from "./local.js";
+// saveCard();
 /* chat api fetch를 통해 답변을 card로 만들어주는 함수 */
 export function makeCard() {
     const createCard = document.querySelector(".card");
@@ -17,9 +18,8 @@ export function makeCard() {
     cardBtn.classList.add("popupBtn");
     cardHeader.append(cardBtn);
     cardBody.append(cardFooter);
-    cardBtn.innerText = "답변";
-    cardFooter.innerText = userInputData;
-
+    cardBtn.innerText = "답변보기";
+    cardFooter.innerText = title;
     basic.append(cardHeader, cardBody);
     /* option에서 고양이, 강아지 선택하였을때 api로 고양이, 강아지 이미지 받아옴.  */
     if (userInputData.includes("고양이")) {
@@ -32,6 +32,7 @@ export function makeCard() {
             cardHeader.append(bgImages);
         });
     }
+
     if (userInputData.includes("강아지")) {
         dogImgMake().then((dogImgUrl) => {
             const bgImages = document.createElement("img");
