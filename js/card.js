@@ -1,48 +1,14 @@
-// import { userInputData } from "./main.js";
+import { userInputData } from "./main.js";
 import { catImgMake } from "./petimgapi.js";
 import { dogImgMake } from "./petimgapi.js";
-import { saveCard } from "./local.js";
-// saveCard();
-/* chat api fetch를 통해 답변을 card로 만들어주는 함수 */
-export function makeCard() {
-    const createCard = document.querySelector(".card");
-    const basic = document.createElement("div");
-    const cardHeader = document.createElement("div");
-    const cardBody = document.createElement("div");
-    const cardBtn = document.createElement("button");
-    const cardFooter = document.createElement("div");
-    basic.classList.add("card-main");
-    cardHeader.classList.add("card-header");
-    cardBody.classList.add("card-body");
-    cardFooter.classList.add("card-body-footer");
-    cardBtn.classList.add("popupBtn");
-    cardHeader.append(cardBtn);
-    cardBody.append(cardFooter);
-    cardBtn.innerText = "답변보기";
-    cardFooter.innerText = title;
-    basic.append(cardHeader, cardBody);
-    /* option에서 고양이, 강아지 선택하였을때 api로 고양이, 강아지 이미지 받아옴.  */
+
+/* useInputData에 따라 imgurl 받는 함수.   */
+export function Peturl() {
+    // /* option에서 고양이, 강아지 선택하였을때 api로 고양이, 강아지 이미지 받아옴.  */
     if (userInputData.includes("고양이")) {
-        catImgMake().then((catImgUrl) => {
-            const bgImages = document.createElement("img");
-            bgImages.classList.add("card-img");
-
-            console.log(catImgUrl);
-            bgImages.style.backgroundImage = `url(${catImgUrl})`;
-            cardHeader.append(bgImages);
-        });
+        catImgMake().then((imgUrl) => {});
     }
-
     if (userInputData.includes("강아지")) {
-        dogImgMake().then((dogImgUrl) => {
-            const bgImages = document.createElement("img");
-            bgImages.classList.add("card-img");
-
-            console.log(dogImgUrl);
-            bgImages.style.backgroundImage = `url(${dogImgUrl})`;
-            cardHeader.append(bgImages);
-        });
+        dogImgMake().then((imgUrl) => {});
     }
-
-    createCard.append(basic);
 }
