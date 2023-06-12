@@ -70,6 +70,7 @@ function card(item) {
     createCard.appendChild(basic);
 }
 
+/* localstroage 모달 생성.*/
 function modalContent(item) {
     const modalWrap = document.createElement("div");
     modalWrap.classList.add("modalWrap");

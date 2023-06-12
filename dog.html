@@ -31,26 +31,27 @@
         <!-- // Header -->
 
         <!-- 메인화면 및 검색창 -->
-        <div class="middle">
-            <h2>동물 백과사전</h2>
-            <form class="form_sel" action="post">
-                <button
-                    type="button"
-                    onclick="location.href='cat.html'"
-                    id="btn"
-                >
-                    고양이
-                </button>
-                <button
-                    type="button"
-                    onclick="location.href='dog.html'"
-                    id="btn"
-                >
-                    강아지
-                </button>
+        <div class="middledog">
+            <h2>강아지와 관련된 질문 해주세요.</h2>
+            <form class="form_sel" action="post" autofocus>
+                <input
+                    id="question"
+                    type="text"
+                    placeholder="ex) 나이는 1살이고 사료추천해주세요."
+                />
+                <button type="submit" id="btn">전송</button>
             </form>
         </div>
         <!-- //메인화면 및 검색창 -->
+
+        <!-- 카드  -->
+        <div id="card"></div>
+        <!-- //카드 -->
+
+        <!-- 모달 -->
+        <div id="modal"></div>
+        <!-- //모달-->
+        <script src="./js/main.js" defer type="module"></script>
 
         <!--footer-->
         <p class="footer">Copyright 2023. bnbbbb</p>
