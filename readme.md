@@ -1,9 +1,34 @@
--   목표 :
+# 고양이 강아지 ChatGpt
+## 개인 
+---
+## 1. 목표와 기능
+---
+### 1-1. 목표
+    - 반려동물에 대한 궁금증 해소. 
+    - 반려동물 질병 예방 가능.
+    - 반려동물에게 필요한 정보 제공
+## 2. 개발 환경 및 배포 URL
+---
+### 2-1. 개발 환경
+    - Visual Studio Code
+### 2-2. 배포 URL
+    - https://bnbbbb.github.io/Html_Project/
+    
+## 3. 프로젝트 구조 및 개발 일정
+### 3-1 프로젝트 구조
+C:.
+├─Html_Project
+│  ├─.vscode
+│  ├─img
+│  └─js
 
-    1. 이번 프로젝트는 인공지능을 API로 다뤄보는 경험 +
-    2. HTML, CSS, JS에 익숙해지는 경험(PyScript 사용 가능) +
-    3. GitHub에 친숙해지는 경험 +
-    4. 코드리뷰 경험
+### 3-2. 개발 일정
+    - 5월 25일 시작
+    - 6월 12일 끝
+    
+## 4. UI
+![bnbbbb github io_Html_Project_](https://github.com/bnbbbb/Html_Project/assets/94068731/5f977722-fc20-4203-9468-95a273f48d2c)
+
 
 -   주제 : ChatGPT를 이용한 자율주제
 
