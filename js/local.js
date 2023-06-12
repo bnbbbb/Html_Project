@@ -2,39 +2,71 @@ import { userInputData } from "./main.js";
 import { answerList } from "./modal.js";
 import { modal } from "./modal.js";
 import { imgUrl } from "./petimgapi.js";
+import { text } from "./main.js";
 
-// allCard 배열을 로컬 스토리지에서 가져옵니다.
-let allCard = JSON.parse(localStorage.getItem("allCard"));
-allCard = allCard ?? [];
-console.log(allCard);
+// let titlecontent = text;
+// catCards 배열을 로컬 스토리지에서 가져옵니다.
+let catCards = JSON.parse(localStorage.getItem("catCards"));
+catCards = catCards ?? [];
+console.log(catCards);
+let dogCards = JSON.parse(localStorage.getItem("dogCards"));
+dogCards = dogCards ?? [];
+console.log(dogCards);
 let count = 0;
 const createCard = document.getElementById("card");
 const createModal = document.getElementById("modal");
-render();
-
+// userInputData;
+// render();
+if (window.location.href.includes("cat.html")) {
+    catrender();
+} else {
+    dogrender();
+}
 /*
 imgUrl을 받고, userInputData, answerList를 받아 
-allCard에 저장해주는 함수
+catCards에 저장해주는 함수
 */
 
 export function saveCard() {
-    console.log("순서 save");
+    if (userInputData.includes("고양이")) {
+        console.log("순서 save");
 
-    const title = userInputData;
-    const petImg = imgUrl;
-    const answer = answerList;
-    allCard.push({ title, petImg, answer });
-    localStorage.setItem("allCard", JSON.stringify(allCard));
-    render();
+        const title = userInputData;
+        const petImg = imgUrl;
+        const answer = answerList;
+        catCards.push({ title, petImg, answer });
+        localStorage.setItem("catCards", JSON.stringify(catCards));
+        catrender();
+    } else if (userInputData.includes("강아지")) {
+        console.log("순서 save");
+
+        const title = userInputData;
+        const petImg = imgUrl;
+        const answer = answerList;
+        dogCards.push({ title, petImg, answer });
+        localStorage.setItem("dogCards", JSON.stringify(dogCards));
+        dogrender();
+    }
 }
 
 /*
     로컬스토리지에 있는 배열을 렌더링해서 html에 전달.
 */
-export function render() {
+export function catrender() {
     createCard.innerHTML = "";
     createModal.innerHTML = "";
-    for (const item of allCard) {
+    for (const item of catCards) {
+        console.log("순서render");
+
+        card(item);
+        modalContent(item);
+        count++;
+    }
+}
+export function dogrender() {
+    createCard.innerHTML = "";
+    createModal.innerHTML = "";
+    for (const item of dogCards) {
         console.log("순서render");
 
         card(item);
@@ -70,7 +102,6 @@ function card(item) {
     createCard.appendChild(basic);
 }
 
-/* localstroage 모달 생성.*/
 function modalContent(item) {
     const modalWrap = document.createElement("div");
     modalWrap.classList.add("modalWrap");

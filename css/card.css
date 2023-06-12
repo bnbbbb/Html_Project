@@ -1,12 +1,12 @@
 #card {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     flex-wrap: wrap;
 }
 .card-main {
     height: 400px;
     max-height: 600px;
-    max-width: 350px;
+    max-width: 200px;
     min-width: 200px;
     width: 100%;
     border-radius: 15px;
@@ -48,7 +48,7 @@
 }
 
 .popupBtn {
-    background-color: #d84242;
+    background-color: rgba(66, 88, 66, 0.805);
     color: #fff;
     font-weight: bold;
     text-align: center;

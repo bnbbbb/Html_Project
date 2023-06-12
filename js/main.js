@@ -5,7 +5,7 @@ import { saveCard } from "./local.js";
 import { data } from "./data.js";
 // 메인 코드 작성
 const $petSpecies = document.querySelector("h2");
-const text = $petSpecies.textContent;
+export let text = $petSpecies.textContent;
 const $button = document.getElementById("btn");
 const $input = document.querySelector("#question");
 export let userInputData;
