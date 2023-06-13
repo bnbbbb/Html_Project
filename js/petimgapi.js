@@ -10,7 +10,7 @@ export function catImgMake() {
         .then((response) => response.json())
         .then((response) => {
             imgUrl = response[0].url;
-            console.log(imgUrl);
+            // console.log(imgUrl);
             saveCard(imgUrl);
             return imgUrl;
         });
@@ -23,7 +23,7 @@ export function dogImgMake() {
         .then((response) => response.json())
         .then((response) => {
             imgUrl = response[0].url;
-            console.log(imgUrl);
+            // console.log(imgUrl);
             saveCard(imgUrl);
             return imgUrl;
         });

@@ -1,14 +1,25 @@
 import { chatGptApi } from "./chatapi.js";
 import { data } from "./data.js";
+import {
+    getAgeLabel,
+    ageSelectedLabel,
+    getGuideLabel,
+    guideSelectedLabel,
+    resetRadioButtons,
+} from "./radiovalue.js";
 const $petSpecies = document.querySelector("h2");
 const $button = document.getElementById("btn");
 const $input = document.querySelector("#question");
 export let text = $petSpecies.textContent;
 export let userInputData;
+export let userQusetionData;
+const form = document.querySelector("form");
 
 // 검색 했을 때 이벤트리스너로 호출.
 $button.addEventListener("click", (e) => {
     e.preventDefault();
+    getAgeLabel();
+    getGuideLabel();
     let nonKeyword = [
         "여행",
         "일정",
@@ -23,12 +34,23 @@ $button.addEventListener("click", (e) => {
         if ($input.value === "") {
             alert("질문을 입력해주세요.");
         } else {
-            userInputData = "고양이 질문입니다." + "\n" + $input.value;
+            userInputData =
+                "고양이 질문입니다." +
+                "\n" +
+                "연령 : " +
+                ageSelectedLabel +
+                "\n" +
+                "질문 가이드 : " +
+                guideSelectedLabel +
+                "\n" +
+                $input.value;
+
+            // console.log(userInputData);
             let noAnswer = nonKeyword.some((word) =>
                 userInputData.includes(word)
             );
-
             $input.value = "";
+            resetRadioButtons();
 
             if (noAnswer) {
                 alert(nonKeyword + "\n검색할 수 없는 키워드 입니다. ");
@@ -46,13 +68,23 @@ $button.addEventListener("click", (e) => {
         if ($input.value === "") {
             alert("질문을 입력해주세요.");
         } else {
-            userInputData = "강아지 질문입니다." + $input.value;
+            userInputData =
+                "강아지 질문입니다." +
+                "\n" +
+                "연령 : " +
+                ageSelectedLabel +
+                "\n" +
+                "질문 가이드 : " +
+                guideSelectedLabel +
+                "\n" +
+                $input.value;
             let noAnswer = nonKeyword.some((word) =>
                 userInputData.includes(word)
             );
 
-            $petSpecies.selectedIndex = 0;
+            // $petSpecies.selectedIndex = 0;
             $input.value = "";
+            resetRadioButtons();
 
             if (noAnswer) {
                 alert(nonKeyword + "\n검색할 수 없는 키워드 입니다. ");

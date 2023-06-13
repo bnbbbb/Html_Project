@@ -1,15 +1,15 @@
 import { userInputData } from "./main.js";
-import { answerList } from "./modal.js";
+// import { answerList } from "./modal.js";
 import { modal } from "./modal.js";
 import { imgUrl } from "./petimgapi.js";
-
+import { content } from "./modal.js";
 // catCards 배열을 로컬 스토리지로 저장.
 let catCards = JSON.parse(localStorage.getItem("catCards"));
 catCards = catCards ?? [];
-console.log(catCards);
+// console.log(catCards);
 let dogCards = JSON.parse(localStorage.getItem("dogCards"));
 dogCards = dogCards ?? [];
-console.log(dogCards);
+// console.log(dogCards);
 let count = 0; // 카드 및 모달 개수 추적 변수
 
 const createCard = document.getElementById("card");
@@ -31,20 +31,21 @@ catCards, dogCards에 저장해주는 함수
 */
 export function saveCard() {
     if (userInputData.includes("고양이")) {
-        console.log("순서 save");
+        // console.log("순서 save");
 
         const title = userInputData;
         const petImg = imgUrl;
-        const answer = answerList;
+        // const answer = answerList;
+        const answer = content;
         catCards.push({ title, petImg, answer });
         localStorage.setItem("catCards", JSON.stringify(catCards));
         catrender();
     } else if (userInputData.includes("강아지")) {
-        console.log("순서 save");
+        // console.log("순서 save");
 
         const title = userInputData;
         const petImg = imgUrl;
-        const answer = answerList;
+        const answer = content;
         dogCards.push({ title, petImg, answer });
         localStorage.setItem("dogCards", JSON.stringify(dogCards));
         dogrender();
@@ -58,7 +59,7 @@ export function catrender() {
     createCard.innerHTML = "";
     createModal.innerHTML = "";
     for (const item of catCards) {
-        console.log("순서render");
+        // console.log("순서render");
 
         card(item);
         modalContent(item);
@@ -69,7 +70,7 @@ export function dogrender() {
     createCard.innerHTML = "";
     createModal.innerHTML = "";
     for (const item of dogCards) {
-        console.log("순서render");
+        // console.log("순서render");
 
         card(item);
         modalContent(item);
@@ -120,7 +121,7 @@ function modalContent(item) {
     modalWrap.appendChild(modalBody);
     modalBody.appendChild(gptAnswer);
     createModal.appendChild(modalWrap);
-    console.log("순서modal");
+    // console.log("순서modal");
     modal();
     const value = item.answer;
     gptAnswer.innerText = value;

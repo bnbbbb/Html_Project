@@ -8,14 +8,7 @@
         <link rel="stylesheet" href="./css/index.css" />
         <link rel="stylesheet" href="./css/card.css" />
         <link rel="stylesheet" href="./css/modal.css" />
-        <style>
-            hr {
-                width: 100%;
-                margin-bottom: 8px;
-                opacity: 0.5;
-                border-color: #d84242;
-            }
-        </style>
+        <link rel="stylesheet" href="./css/font.css" />
     </head>
 
     <body>
@@ -37,10 +30,67 @@
                 <h2>구체적으로 작성해주세요.</h2>
             </section>
             <form class="form_sel" action="post" autofocus>
+                <div class="age">
+                    <h3>강아지 생애주기 선택</h3>
+                    <label
+                        ><input type="radio" name="age" value="baby" />
+                        자견기</label
+                    >
+                    <label
+                        ><input type="radio" name="age" value="adolescence" />
+                        청년기</label
+                    >
+                    <label
+                        ><input type="radio" name="age" value="mature" />
+                        성견기</label
+                    >
+                    <label
+                        ><input type="radio" name="age" value="latemid" />
+                        장견기</label
+                    >
+                    <label
+                        ><input type="radio" name="age" value="midlife" />
+                        중견기</label
+                    >
+                    <label
+                        ><input type="radio" name="age" value="old" />
+                        노견기</label
+                    >
+                </div>
+                <div class="guide">
+                    <h3>강아지 종합 가이드</h3>
+                    <label
+                        ><input type="radio" name="guide" value="apple" />
+                        품종</label
+                    >
+                    <label
+                        ><input type="radio" name="guide" value="banana" />
+                        건강과 질병
+                    </label>
+                    <label
+                        ><input type="radio" name="guide" value="banana" /> 행동
+                    </label>
+                    <label
+                        ><input type="radio" name="guide" value="banana" />
+                        훈련과 양육</label
+                    >
+                    <label
+                        ><input type="radio" name="guide" value="banana" />
+                        영양과 사료</label
+                    >
+                    <label
+                        ><input type="radio" name="guide" value="banana" />
+                        생활환경과 관리</label
+                    >
+                    <label
+                        ><input type="radio" name="guide" value="banana" />
+                        종합적인 팁과 조언</label
+                    >
+                </div>
                 <input
                     id="question"
                     type="text"
-                    placeholder="ex) 나이는 1살이고 사료추천해주세요."
+                    placeholder="카테고리 선택후 디테일하게 질문해주세요."
                 />
                 <button type="submit" id="btn">전송</button>
             </form>
