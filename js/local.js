@@ -2,31 +2,33 @@ import { userInputData } from "./main.js";
 import { answerList } from "./modal.js";
 import { modal } from "./modal.js";
 import { imgUrl } from "./petimgapi.js";
-import { text } from "./main.js";
 
-// let titlecontent = text;
-// catCards 배열을 로컬 스토리지에서 가져옵니다.
+// catCards 배열을 로컬 스토리지로 저장.
 let catCards = JSON.parse(localStorage.getItem("catCards"));
 catCards = catCards ?? [];
 console.log(catCards);
 let dogCards = JSON.parse(localStorage.getItem("dogCards"));
 dogCards = dogCards ?? [];
 console.log(dogCards);
-let count = 0;
+let count = 0; // 카드 및 모달 개수 추적 변수
+
 const createCard = document.getElementById("card");
 const createModal = document.getElementById("modal");
-// userInputData;
-// render();
+
+/* 
+cat.html에서는 catrender()를 통해 고양이 카드만 보여줌
+dog.html에서는 dogrender()를 통해 강아지 카드만 보여줌 
+*/
 if (window.location.href.includes("cat.html")) {
     catrender();
 } else {
     dogrender();
 }
+
 /*
 imgUrl을 받고, userInputData, answerList를 받아 
-catCards에 저장해주는 함수
+catCards, dogCards에 저장해주는 함수
 */
-
 export function saveCard() {
     if (userInputData.includes("고양이")) {
         console.log("순서 save");
@@ -60,7 +62,7 @@ export function catrender() {
 
         card(item);
         modalContent(item);
-        count++;
+        count++; // 카드 및 모달 개수 추적
     }
 }
 export function dogrender() {
@@ -71,11 +73,13 @@ export function dogrender() {
 
         card(item);
         modalContent(item);
-        count++;
+        count++; // 카드 및 모달 개수 추적
     }
 }
 
-/* 카드 및 이미지 생성  */
+/* 
+카드 및 이미지 생성 함수 
+*/
 
 function card(item) {
     const basic = document.createElement("div");
@@ -102,6 +106,9 @@ function card(item) {
     createCard.appendChild(basic);
 }
 
+/* 
+모달 생성 함수
+*/
 function modalContent(item) {
     const modalWrap = document.createElement("div");
     modalWrap.classList.add("modalWrap");

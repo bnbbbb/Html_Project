@@ -1,14 +1,11 @@
 import { chatGptApi } from "./chatapi.js";
-// import { saveCard } from "./localcard.js";
-import { modal } from "./modal.js";
-import { saveCard } from "./local.js";
 import { data } from "./data.js";
-// 메인 코드 작성
 const $petSpecies = document.querySelector("h2");
-export let text = $petSpecies.textContent;
 const $button = document.getElementById("btn");
 const $input = document.querySelector("#question");
+export let text = $petSpecies.textContent;
 export let userInputData;
+
 // 검색 했을 때 이벤트리스너로 호출.
 $button.addEventListener("click", (e) => {
     e.preventDefault();
@@ -21,6 +18,7 @@ $button.addEventListener("click", (e) => {
         "동물원",
         "파도",
     ];
+    // html main 부분에 "고양이"라는 단어가 포함되어 있는지 확인합니다
     if (text.includes("고양이")) {
         if ($input.value === "") {
             alert("질문을 입력해주세요.");
@@ -43,6 +41,7 @@ $button.addEventListener("click", (e) => {
             }
         }
     }
+    // html main 부분에 "강아지"라는 단어가 포함되어 있는지 확인합니다
     if (text.includes("강아지")) {
         if ($input.value === "") {
             alert("질문을 입력해주세요.");

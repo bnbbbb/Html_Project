@@ -1,5 +1,5 @@
+// 모달의 답변을 저장할 배열
 export let answerList = [];
-let count = 0;
 
 export function modal() {
     const btns = document.querySelectorAll(".popupBtn");
@@ -27,7 +27,6 @@ export function modal() {
 /* @param {object} res chatGpt의 답변을 받음. */
 export function getValueForModal(res) {
     let content = res.choices[0].message.content.toString();
-    console.log("count: ", count);
-    answerList.push(content);
+    answerList.push(content); // 답변을 answerList에 저장합니다.
     return answerList;
 }
