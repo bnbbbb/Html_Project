@@ -7,13 +7,14 @@ import {
     guideSelectedLabel,
     resetRadioButtons,
 } from "./radiovalue.js";
+
 const $petSpecies = document.querySelector("h2");
 const $button = document.getElementById("btn");
 const $input = document.querySelector("#question");
+
 export let text = $petSpecies.textContent;
 export let userInputData;
 export let userQusetionData;
-const form = document.querySelector("form");
 
 // 검색 했을 때 이벤트리스너로 호출.
 $button.addEventListener("click", (e) => {
@@ -78,6 +79,7 @@ $button.addEventListener("click", (e) => {
                 guideSelectedLabel +
                 "\n" +
                 $input.value;
+
             let noAnswer = nonKeyword.some((word) =>
                 userInputData.includes(word)
             );

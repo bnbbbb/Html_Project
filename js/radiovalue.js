@@ -1,6 +1,7 @@
 /* 첫 번째 radiobutton 값 저장하는 함수 */
 const optionsage = document.getElementsByName("age");
 export let ageSelectedLabel;
+
 export function getAgeLabel() {
     for (let i = 0; i < optionsage.length; i++) {
         if (optionsage[i].checked) {

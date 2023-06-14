@@ -1,19 +1,17 @@
 import { userInputData } from "./main.js";
-// import { answerList } from "./modal.js";
 import { modal } from "./modal.js";
 import { imgUrl } from "./petimgapi.js";
 import { content } from "./modal.js";
-// catCards 배열을 로컬 스토리지로 저장.
-let catCards = JSON.parse(localStorage.getItem("catCards"));
-catCards = catCards ?? [];
-// console.log(catCards);
-let dogCards = JSON.parse(localStorage.getItem("dogCards"));
-dogCards = dogCards ?? [];
-// console.log(dogCards);
-let count = 0; // 카드 및 모달 개수 추적 변수
 
 const createCard = document.getElementById("card");
 const createModal = document.getElementById("modal");
+
+// catCards 배열을 로컬 스토리지로 저장.
+let catCards = JSON.parse(localStorage.getItem("catCards"));
+catCards = catCards ?? [];
+let dogCards = JSON.parse(localStorage.getItem("dogCards"));
+dogCards = dogCards ?? [];
+let count = 0; // 카드 및 모달 개수 추적 변수
 
 /* 
 cat.html에서는 catrender()를 통해 고양이 카드만 보여줌
@@ -31,23 +29,22 @@ catCards, dogCards에 저장해주는 함수
 */
 export function saveCard() {
     if (userInputData.includes("고양이")) {
-        // console.log("순서 save");
-
         const title = userInputData;
         const petImg = imgUrl;
-        // const answer = answerList;
         const answer = content;
+
         catCards.push({ title, petImg, answer });
         localStorage.setItem("catCards", JSON.stringify(catCards));
+
         catrender();
     } else if (userInputData.includes("강아지")) {
-        // console.log("순서 save");
-
         const title = userInputData;
         const petImg = imgUrl;
         const answer = content;
+
         dogCards.push({ title, petImg, answer });
         localStorage.setItem("dogCards", JSON.stringify(dogCards));
+
         dogrender();
     }
 }
@@ -59,8 +56,6 @@ export function catrender() {
     createCard.innerHTML = "";
     createModal.innerHTML = "";
     for (const item of catCards) {
-        // console.log("순서render");
-
         card(item);
         modalContent(item);
         count++; // 카드 및 모달 개수 추적
@@ -70,8 +65,6 @@ export function dogrender() {
     createCard.innerHTML = "";
     createModal.innerHTML = "";
     for (const item of dogCards) {
-        // console.log("순서render");
-
         card(item);
         modalContent(item);
         count++; // 카드 및 모달 개수 추적
@@ -88,20 +81,25 @@ function card(item) {
     const cardBody = document.createElement("div");
     const cardBtn = document.createElement("button");
     const cardFooter = document.createElement("div");
+
     basic.classList.add("card-main");
     cardHeader.classList.add("card-header");
     cardBody.classList.add("card-body");
     cardFooter.classList.add("card-body-footer");
     cardBtn.classList.add("popupBtn");
-    cardHeader.appendChild(cardBtn);
-    cardBody.appendChild(cardFooter);
+
     cardBtn.innerText = "답변보기";
     cardFooter.innerText = item.title;
+
+    cardHeader.appendChild(cardBtn);
+    cardBody.appendChild(cardFooter);
+
     basic.append(cardHeader, cardBody);
+
     const bgImages = document.createElement("img");
     bgImages.classList.add("card-img");
-
     bgImages.style.backgroundImage = `url(${item.petImg})`;
+
     cardHeader.appendChild(bgImages);
 
     createCard.appendChild(basic);
@@ -113,16 +111,19 @@ function card(item) {
 function modalContent(item) {
     const modalWrap = document.createElement("div");
     modalWrap.classList.add("modalWrap");
+
     const modalBody = document.createElement("div");
     modalBody.classList.add("modalBody");
     modalBody.innerHTML = `<span class="closeBtn">X</span>`;
+
     const gptAnswer = document.createElement("h4");
     gptAnswer.classList.add("gptAnswer");
+
     modalWrap.appendChild(modalBody);
     modalBody.appendChild(gptAnswer);
     createModal.appendChild(modalWrap);
-    // console.log("순서modal");
     modal();
+
     const value = item.answer;
     gptAnswer.innerText = value;
 }

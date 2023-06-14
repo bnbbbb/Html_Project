@@ -1,5 +1,4 @@
 import { data } from "./data.js";
-import { userInputData } from "./main.js";
 import { Peturl } from "./card.js";
 import { modal } from "./modal.js";
 import { getValueForModal } from "./modal.js";
@@ -22,14 +21,9 @@ export function chatGptApi() {
             Peturl();
             modal();
             getValueForModal(res);
-            // console.log(res.choices[0].message);
 
-            // console.log(userInputData);
             hideLoading();
             moveCardDown();
-            // console.log(res.choices[0].message.content);
         });
     openLoading();
-    // performAsyncTask();
-    // alert("아래 카드가 만들어 질때까지 기다려주세요.");
 }
