@@ -1,7 +1,4 @@
-.btnWrap {
-    width: 500px;
-    margin: 100px auto;
-}
+/* modal 전체적인 스타일 */
 
 .modalWrap {
     position: fixed;
@@ -16,6 +13,7 @@
     display: none;
 }
 
+/* modal 부분 스타일 */
 .modalBody {
     width: 550px;
     height: 600px;
@@ -25,16 +23,17 @@
     margin: 15px auto;
     border: 1px solid #777;
     border-radius: 15px;
-    background-color: #fefefe;
+    background-color: #f5f2f2;
 }
 
+/* modal closebtn 스타일 */
 .closeBtn {
-    float: right;
     font-weight: bold;
-    color: #777;
+    color: #7a7a7a;
     font-size: 25px;
     cursor: pointer;
 }
+
 .closeBtn:hover,
 .closeBtn:focus {
     color: black;

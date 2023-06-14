@@ -1,4 +1,4 @@
-import { chatGptApi } from "./chatapi.js";
+import { chatGptApi } from "./api.js";
 import { data } from "./data.js";
 import {
     getAgeLabel,
@@ -21,6 +21,7 @@ $button.addEventListener("click", (e) => {
     e.preventDefault();
     getAgeLabel();
     getGuideLabel();
+
     let nonKeyword = [
         "여행",
         "일정",
@@ -30,23 +31,22 @@ $button.addEventListener("click", (e) => {
         "동물원",
         "파도",
     ];
+
     // html main 부분에 "고양이"라는 단어가 포함되어 있는지 확인합니다
     if (text.includes("고양이")) {
-        if ($input.value === "") {
+        if (ageSelectedLabel === undefined) {
+            alert("고양이 생애주기 선택해주세요.");
+        } else if (guideSelectedLabel === undefined) {
+            alert("고양이 종합가이드 선택해주세요.");
+        } else if ($input.value === "") {
             alert("질문을 입력해주세요.");
         } else {
-            userInputData =
-                "고양이 질문입니다." +
-                "\n" +
-                "연령 : " +
-                ageSelectedLabel +
-                "\n" +
-                "질문 가이드 : " +
-                guideSelectedLabel +
-                "\n" +
-                $input.value;
+            userInputData = `고양이 질문입니다.
+            나이 : ${ageSelectedLabel}
+            질문 가이드 : ${guideSelectedLabel}
+            ${$input.value}
+            `;
 
-            // console.log(userInputData);
             let noAnswer = nonKeyword.some((word) =>
                 userInputData.includes(word)
             );
@@ -54,7 +54,7 @@ $button.addEventListener("click", (e) => {
             resetRadioButtons();
 
             if (noAnswer) {
-                alert(nonKeyword + "\n검색할 수 없는 키워드 입니다. ");
+                alert(`${nonKeyword} 검색할 수 없는 키워드 입니다.`);
             } else {
                 data.push({
                     role: "user",
@@ -64,21 +64,21 @@ $button.addEventListener("click", (e) => {
             }
         }
     }
+
     // html main 부분에 "강아지"라는 단어가 포함되어 있는지 확인합니다
     if (text.includes("강아지")) {
-        if ($input.value === "") {
+        if (ageSelectedLabel === undefined) {
+            alert("강아지 생애주기 선택해주세요.");
+        } else if (guideSelectedLabel === undefined) {
+            alert("강아지 종합가이드 선택해주세요.");
+        } else if ($input.value === "") {
             alert("질문을 입력해주세요.");
         } else {
-            userInputData =
-                "강아지 질문입니다." +
-                "\n" +
-                "연령 : " +
-                ageSelectedLabel +
-                "\n" +
-                "질문 가이드 : " +
-                guideSelectedLabel +
-                "\n" +
-                $input.value;
+            userInputData = `강아지 질문입니다.
+            나이 : ${ageSelectedLabel}
+            질문 가이드 : ${guideSelectedLabel}
+            ${$input.value}
+            `;
 
             let noAnswer = nonKeyword.some((word) =>
                 userInputData.includes(word)
@@ -89,7 +89,7 @@ $button.addEventListener("click", (e) => {
             resetRadioButtons();
 
             if (noAnswer) {
-                alert(nonKeyword + "\n검색할 수 없는 키워드 입니다. ");
+                alert(`${nonKeyword} 검색할 수 없는 키워드 입니다.`);
             } else {
                 data.push({
                     role: "user",

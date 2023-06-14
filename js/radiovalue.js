@@ -2,6 +2,9 @@
 const optionsage = document.getElementsByName("age");
 export let ageSelectedLabel;
 
+const optionsguide = document.getElementsByName("guide");
+export let guideSelectedLabel;
+
 export function getAgeLabel() {
     for (let i = 0; i < optionsage.length; i++) {
         if (optionsage[i].checked) {
@@ -12,8 +15,6 @@ export function getAgeLabel() {
 }
 
 /* 두 번째 radiobutton 값 저장하는 함수 */
-const optionsguide = document.getElementsByName("guide");
-export let guideSelectedLabel;
 export function getGuideLabel() {
     for (let i = 0; i < optionsguide.length; i++) {
         if (optionsguide[i].checked) {

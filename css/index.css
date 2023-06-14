@@ -1,3 +1,4 @@
+/* 초기화 */
 body,
 h1,
 h2,
@@ -8,6 +9,7 @@ input {
     padding: 0;
     border: 0;
 }
+/* body 스타일 설정 */
 body {
     display: flex;
     flex-direction: column;
@@ -16,32 +18,37 @@ body {
     margin: 0 auto;
     background-color: rgba(0, 0, 0, 0.03);
 }
+
+/* header 스타일 설정 */
 .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 20px;
     height: 80px;
-
-    /* border-bottom: 4px solid gray; */
-    /* margin: 0 auto; */
 }
+
 .header h1 a {
     color: black;
     text-decoration: none;
 }
-.headerbtn a {
+
+.btn-header a {
     padding: 0px 15px;
     margin-left: 10px;
     color: black;
     text-decoration: none;
     font-size: 15px;
 }
+
+/* footer 스타일 설정 */
 .footer {
     text-align: center;
     padding: 20px 0;
     margin-top: 80px;
 }
+
+/* main요소 스타일 설정 */
 .main {
     background: url("https://images.unsplash.com/photo-1509205477838-a534e43a849f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=578&q=80")
         center/cover no-repeat;
@@ -57,15 +64,18 @@ body {
     flex-direction: column;
     position: relative;
 }
+
 .main h2 {
     font-size: 30px;
     color: white;
 }
+
 .main p {
     font-size: 18px;
     color: white;
     font-weight: bold;
 }
+
 .main h2,
 .main p {
     margin-top: 20px;
@@ -74,6 +84,8 @@ body {
     padding-bottom: 20px;
     text-shadow: 3px 6px 5px rgb(228, 224, 224);
 }
+
+/* index.html, cat.html, dog.html html 코드 구성이 동일하나 클래스만 달라서 함께 표현. */
 .maincat h2,
 .maindog h2 {
     margin-top: 20px;
@@ -90,15 +102,18 @@ body {
     padding-bottom: 10px;
     text-shadow: 3px 6px 5px rgb(19, 19, 19);
 }
+
 .maincat form,
 .maindog form {
     font-weight: bold;
     font-size: 17px;
     position: relative;
     z-index: 100;
+    color: white;
     padding-bottom: 10px;
-    text-shadow: 3px 6px 5px rgb(19, 19, 19);
+    text-shadow: 3px 6px 5px rgb(211, 211, 211);
 }
+
 .main button,
 .maincat button,
 .maindog button,
@@ -107,8 +122,8 @@ body {
     position: relative;
     z-index: 100;
 }
-.main::before,
-.maincat::before,
+
+/* 가상 요소 사용으로 이미지만 어둡게 만듬. */
 .maindog::before {
     position: absolute;
     content: "";
@@ -116,20 +131,43 @@ body {
     left: 0px;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    filter: blur(100px);
+    background-color: rgba(0, 0, 0, 0.582);
     border-radius: 20px;
 }
+
+.main::before {
+    position: absolute;
+    content: "";
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.582);
+    border-radius: 20px;
+}
+
+.maincat::before {
+    position: absolute;
+    content: "";
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.582);
+    border-radius: 20px;
+}
+/* //index.html, cat.html, dog.html html */
+
+/* main요소에서 maincat 스타일 구현 */
 .maincat {
-    background: rgba(0, 0, 0, 0.5)
-        url("https://images.unsplash.com/photo-1598188306155-25e400eb5078?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80")
+    background: url("https://images.unsplash.com/photo-1598188306155-25e400eb5078?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80")
         center/cover no-repeat;
     border-radius: 20px;
     margin-top: 40px;
     min-height: 800px;
     height: 100%;
     text-align: center;
-    color: white;
+    color: black;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -137,52 +175,66 @@ body {
     position: relative;
     width: 100%;
 }
+
+/* main요소에서 maindog 스타일 구현 */
 .maindog {
-    background: rgba(0, 0, 0, 0.5)
-        url("https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fCVFQSVCMCU5NSVFQyU5NSU4NCVFQyVBNyU4MHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60")
+    background: url("https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fCVFQSVCMCU5NSVFQyU5NSU4NCVFQyVBNyU4MHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60")
         center/cover no-repeat;
     border-radius: 20px;
     margin-top: 40px;
     min-height: 800px;
     height: 100%;
     text-align: center;
-    color: white;
+    color: black;
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
     position: relative;
 }
-
+.main-text {
+    z-index: 100;
+    background-color: rgb(255, 255, 255);
+    margin-top: 20px;
+    max-width: 600px;
+    width: 100%;
+    border-radius: 20px;
+}
 .main_img {
     border-style: none;
     background-size: cover;
     width: 100%;
     height: 100%;
 }
+
+/* 메인 부분에서 검색 및 카테고리 스타일 */
 .form_sel {
     margin-top: 200px;
     flex-wrap: wrap;
     z-index: 1;
 }
+
 #question {
     justify-content: center;
     text-align: center;
     background-color: rgba(255, 255, 255, 0.795);
     font-size: 20px;
     color: black;
-    max-width: 500px;
+    max-width: 600px;
     width: 100%;
     height: 70px;
     margin-top: 20px;
 }
+
 .age {
     margin-bottom: 10px;
 }
+
 label {
     margin-right: 10px;
     /* margin-bottom: 20px; */
 }
+
 input {
     flex-grow: 1;
     /* width: 600px; */
@@ -190,6 +242,8 @@ input {
     border-radius: 15px;
     /* height: 70px; */
 }
+
+/* main 부분에서 버튼 스타일 */
 button {
     width: 300px;
     height: 70px;
@@ -202,9 +256,11 @@ button {
     transition: all 0.9s, color 0.3;
     margin-top: 150px;
 }
+
 button:hover {
     box-shadow: 300px 0 0 0 rgba(0, 0, 0, 0.2) inset;
 }
+
 @media (max-width: 400px) {
     button {
         width: 200px;
@@ -212,24 +268,4 @@ button:hover {
     .headerbtn {
         display: flex;
     }
-}
-#loading {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 7000;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#loading-spinner {
-    background-image: url("../img/Pacman.gif");
-    position: absolute;
-    width: 160px;
-    height: 160px;
-    background-repeat: no-repeat;
 }

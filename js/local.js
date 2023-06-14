@@ -1,6 +1,6 @@
 import { userInputData } from "./main.js";
 import { modal } from "./modal.js";
-import { imgUrl } from "./petimgapi.js";
+import { imgUrl } from "./api.js";
 import { content } from "./modal.js";
 
 const createCard = document.getElementById("card");

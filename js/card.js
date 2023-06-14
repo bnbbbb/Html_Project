@@ -1,6 +1,6 @@
 import { userInputData } from "./main.js";
-import { catImgMake } from "./petimgapi.js";
-import { dogImgMake } from "./petimgapi.js";
+import { catImgMake } from "./api.js";
+import { dogImgMake } from "./api.js";
 
 /* useInputData에 따라 imgurl 받는 함수.   */
 export function Peturl() {
