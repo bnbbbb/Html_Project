@@ -46,10 +46,10 @@
 
 ### 3-1 프로젝트 구조
 
-    ├─Html_Project
+    |─Html_Project
     │  ├─.vscode
     │  ├─img
-    |  |   ├─Pacman.gif
+    |  |   └─Pacman.gif
     │  ├─js
     |  |   ├─card.js
     |  |   ├─chatapi.js
@@ -59,12 +59,12 @@
     |  |   ├─modal.js
     |  |   ├─petimgapi.js
     |  |   ├─radiovalue.js
-    |  |   ├─scroll.js
-    |  ├─css
-    |  |   ├─card.css
-    |  |   ├─font.css
-    |  |   ├─index.css
-    |  |   ├─modal.css
+    |  |   └─scroll.js
+    |  └─css
+    |      ├─card.css
+    |      ├─font.css
+    |      ├─index.css
+    |      └─modal.css
 
 ### 3-2. 개발 일정
 
