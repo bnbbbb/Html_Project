@@ -269,3 +269,13 @@ button:hover {
         display: flex;
     }
 }
+
+/* radiobutton hover */
+.age :hover {
+    font-size: 20px;
+    color: wheat;
+}
+.guide :hover {
+    font-size: 20px;
+    color: wheat;
+}
